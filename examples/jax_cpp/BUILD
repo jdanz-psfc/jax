@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package(default_applicable_licenses = ["//third_party/py/jax:license"])
-
 licenses(["notice"])
 
 cc_binary(
@@ -30,7 +28,7 @@ cc_binary(
         "@xla//xla/pjrt:tfrt_cpu_pjrt_client",
         "@xla//xla/service:hlo_proto_cc",
         "@xla//xla/tools:hlo_module_loader",
-        "@tsl///platform:logging",
-        "@tsl///platform:platform_port",
+        "@tsl//tsl/platform:logging",
+        "@tsl//tsl/platform:platform_port",
     ],
 )
