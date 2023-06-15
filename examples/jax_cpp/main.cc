@@ -43,7 +43,8 @@ limitations under the License.
 #include "xla/literal.h"
 #include "xla/literal_util.h"
 #include "xla/pjrt/pjrt_client.h"
-#include "xla/pjrt/tfrt_cpu_pjrt_client.h"
+#include "xla/pjrt/gpu/gpu_helpers.h"
+#include "xla/pjrt/gpu/se_gpu_pjrt_client.h"
 #include "xla/status.h"
 #include "xla/statusor.h"
 #include "xla/tools/hlo_module_loader.h"
@@ -65,9 +66,11 @@ int main(int argc, char** argv) {
 
   // Run it using JAX C++ Runtime (PJRT).
 
-  // Get a CPU client.
+  // Get a GPU client.
+  xla::GpuAllocatorConfig alloc_config;
+
   std::unique_ptr<xla::PjRtClient> client =
-      xla::GetTfrtCpuClient(/*asynchronous=*/true).value();
+      xla::GetStreamExecutorGpuClient(/*asynchronous=*/true, alloc_config, /*node_id=*/0).value();
 
   // Compile XlaComputation to PjRtExecutable.
   xla::XlaComputation xla_computation(test_module_proto);
