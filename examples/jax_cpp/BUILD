@@ -26,6 +26,7 @@ cc_binary(
         "@xla//xla:statusor",
         "@xla//xla/pjrt:pjrt_client",
         "@xla//xla/pjrt/gpu:se_gpu_pjrt_client",
+        "@xla//xla/stream_executor:cuda_platform",
         "@xla//xla/service:hlo_proto_cc",
         "@xla//xla/tools:hlo_module_loader",
         "@tsl//tsl/platform:logging",
