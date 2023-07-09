@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
 
   // Prepare inputs.
   xla::Literal literal_x =
-      xla::LiteralUtil::CreateR2<float>({{1.0f, 2.0f}, {3.0f, 4.0f}});
+      xla::LiteralUtil::CreateR2<float>({{1.0f, 2.0f}});
   xla::Literal literal_y =
       xla::LiteralUtil::CreateR2<float>({{1.0f, 1.0f}, {1.0f, 1.0f}});
   std::unique_ptr<xla::PjRtBuffer> param_x =
@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
   xla::ExecuteOptions execute_options;
   // One vector<buffer> for each device.
   std::vector<std::vector<std::unique_ptr<xla::PjRtBuffer>>> results =
-      executable->Execute({{param_x.get(), param_y.get()}}, execute_options)
+      executable->Execute({{param_x.get()}}, execute_options)
           .value();
 
   // Get result.
